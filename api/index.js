@@ -35,7 +35,8 @@ app.post('/submit-form', (req, res) => {
                     }
                 })
             })
-            res.end("Files")
+            res.status(200).send({"status":200});
+            res.end();
         }
     });
 });

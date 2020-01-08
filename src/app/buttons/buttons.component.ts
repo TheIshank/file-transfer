@@ -39,11 +39,13 @@ export class ButtonsComponent implements OnInit {
     for (let i = 0; i < this.file_list.length; i++) {
       formData.append('file_' + i, this.file_list[i]);
     }
-    console.log("Files:");
-    console.log(formData);
     let url = "http://localhost:5000/submit-form"
-    this.http.post(url, formData).subscribe(data => {
-      console.log(data);
+    this.http.post(url, formData).subscribe((response: Response) => {
+      console.log("Response Received: ");
+      if(response.status == 200){
+        this.submitted = false;
+        this.file_list = [];
+      }
     });
   }
 
