@@ -1,0 +1,29 @@
+<form id="file_form" method="POST" action="http://localhost:5000/submit-form">
+  <input type="file" id="upload_file" style="display: none;" multiple (change)="fileEvent($event)" />
+</form>
+<div class="wrapper">
+  <div class="fancy_text">
+    UPLOAD YOUR FILES HERE
+  </div>
+  <div class="button" onclick="upload_file.click()" (click)="unsetSubmitted();">
+    <span class="button__mask"></span>
+    <span class="button__text">upload</span>
+    <span class="button__text button__text--bis">upload</span>
+  </div>
+  <br />
+  <app-loader *ngIf="submitted"></app-loader>
+  <br />
+  <div class="button" *ngIf="submitted == false" (click)="setSubmitted();">
+    <span class="button__mask"></span>
+    <span class="button__text">send</span>
+    <span class="button__text button__text--bis">send</span>
+  </div>
+  <br />
+  <div class="fancy_text" *ngIf="file_list.length > 0">
+    UPLOADED FILES
+    <br />
+    <div *ngFor="let item of file_list">
+      {{item.name}}
+    </div>
+  </div>
+</div>
